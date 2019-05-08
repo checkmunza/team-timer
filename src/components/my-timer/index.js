@@ -16,6 +16,8 @@ class MyTimer extends React.Component {
         
         this.handleTimerButton = this.handleTimerButton.bind(this);
         this.handleSetTeamAmount = this.handleSetTeamAmount.bind(this);
+        this.selectPrevTeam = this.selectPrevTeam.bind(this);
+        this.selectNextTeam = this.selectNextTeam.bind(this);
     }
 
     componentWillUnmount() {
@@ -46,6 +48,23 @@ class MyTimer extends React.Component {
         });
     }
 
+    selectNextTeam() {
+        this.setState((state, props) => {
+            return {
+                currentTeam: (state.currentTeam + 1) % state.teamAmount,
+            }
+        });
+    }
+
+    selectPrevTeam() {
+        this.setState((state, props) => {
+            let current = state.currentTeam - 1;
+            return {
+                currentTeam: current >= 0 ? current : state.teamAmount - 1,
+            }
+        });
+    }
+
     updateTime(interval) {
         this.setState((state, props) => {
             return { timeNow: state.timeNow + interval }
@@ -64,9 +83,11 @@ class MyTimer extends React.Component {
     }
 
     handleSetTeamAmount(amount) {
+        this.stopTimer();
         this.setState({
             teamAmount: amount,
             currentTeam: 0,
+            timeNow: 0,
             teamTime: Array(amount).fill(0),
         });
     }
@@ -77,10 +98,13 @@ class MyTimer extends React.Component {
                 isRunning={this.state.isRunning}
                 teamTime={this.state.teamTime}
                 timeNow={this.state.timeNow}
+                currentTeam={this.state.currentTeam}
                 teamAmountDefault={this.teamAmountDefault}
                 teamAmount={this.state.teamAmount}
                 onClickTimerButton={this.handleTimerButton}
                 onSubmitTeamAmount={this.handleSetTeamAmount}
+                onClickSelectNextTeam={this.selectNextTeam}
+                onClickSelectPrevTeam={this.selectPrevTeam}
             />
         );
     }
