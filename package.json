@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "gh-pages": "^2.0.1",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "react": "^16.8.3",
@@ -12,6 +13,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -25,5 +28,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "homepage": "http://checkmunza.github.io"
+  "homepage": "http://checkmunza.github.io/team-timer"
 }
