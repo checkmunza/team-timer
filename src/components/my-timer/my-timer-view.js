@@ -99,7 +99,7 @@ class MyTimerView extends React.Component {
                     </table>
                     <button type="button" 
                         onClick={this.toggleTeamAmountForm}
-                        className={`btn btn-block mt-3 btn-secondary btn-sm`}
+                        className={`btn btn-block my-3 btn-secondary btn-sm`}
                     >
                         Toggle Form
                     </button>
